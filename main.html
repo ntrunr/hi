@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ntrunr</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#050505;
+  color:#ededed;
+  font-family:'Inter',sans-serif;
+  padding:60px 8%;
+}
+
+.container{
+  max-width:920px;
+  margin:auto;
+}
+
+/* NAV */
+
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:120px;
+  flex-wrap:wrap;
+  gap:20px;
+}
+
+.logo{
+  font-size:13px;
+  letter-spacing:2px;
+  color:#777;
+}
+
+.nav-links{
+  display:flex;
+  gap:22px;
+  flex-wrap:wrap;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#666;
+  font-size:14px;
+  transition:.2s;
+}
+
+.nav-links a:hover{
+  color:#fff;
+}
+
+/* HERO */
+
+.hero{
+  display:flex;
+  justify-content:space-between;
+  gap:80px;
+  align-items:flex-start;
+  margin-bottom:120px;
+  flex-wrap:wrap;
+}
+
+.hero-left{
+  flex:1;
+  min-width:300px;
+}
+
+.hero-left h1{
+  font-size:88px;
+  line-height:0.9;
+  letter-spacing:-5px;
+  margin-bottom:28px;
+  font-weight:700;
+}
+
+.accent{
+  color:#db1212;
+}
+
+.hero-left p{
+  max-width:520px;
+  color:#8a8a8a;
+  line-height:1.9;
+  font-size:15px;
+}
+
+.image{
+  width:210px;
+  height:260px;
+  overflow:hidden;
+  border-radius:20px;
+  border:1px solid #141414;
+}
+
+.image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* SECTION */
+
+.section{
+  margin-bottom:100px;
+}
+
+.section-title{
+  font-size:12px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#555;
+  margin-bottom:30px;
+}
+
+/* ITEMS */
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 0;
+  border-bottom:1px solid #101010;
+  transition:.2s;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.item:hover{
+  padding-left:6px;
+}
+
+.item a{
+  text-decoration:none;
+  color:#f1f1f1;
+  font-size:16px;
+}
+
+.item span{
+  color:#666;
+  font-size:13px;
+}
+
+/* COMPANIES */
+
+.companies{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+.companies img{
+  width:42px;
+  height:42px;
+  object-fit:contain;
+  opacity:.65;
+  filter:grayscale(100%);
+  transition:.2s;
+}
+
+.companies img:hover{
+  opacity:1;
+  filter:grayscale(0%);
+}
+
+/* CONNECT */
+
+.connect{
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+}
+
+.connect a{
+  text-decoration:none;
+  color:#777;
+  font-size:14px;
+  transition:.2s;
+}
+
+.connect a:hover{
+  color:#fff;
+}
+
+/* FOOTER */
+
+footer{
+  margin-top:100px;
+  padding-top:25px;
+  border-top:1px solid #111;
+  color:#444;
+  font-size:13px;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+  body{
+    padding:35px 6%;
+  }
+
+  nav{
+    margin-bottom:70px;
+  }
+
+  .hero{
+    gap:45px;
+    margin-bottom:80px;
+  }
+
+  .hero-left h1{
+    font-size:54px;
+    letter-spacing:-3px;
+  }
+
+  .image{
+    width:100%;
+    height:330px;
+  }
+
+  .item{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- NAVBAR -->
+
+<nav>
+
+  <div class="logo">
+    who is Frey(ntrunr)?
+  </div>
+
+  <div class="nav-links">
+
+    <a href="#projects">projects</a>
+    <a href="#research">research</a>
+    <a href="#blogs">blogs</a>
+    <a href="#connect">connect</a>
+
+  </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-left">
+
+    <h1>
+
+      <span class="accent">offensive</span><br>
+      security<br>
+      researcher
+
+    </h1>
+
+    <p>
+
+Hello there, I’m Frey. I work as a Red Teamer focused on web security, exploit development, authentication flaws, AI security research, and offensive tooling. As you can probably guess, most of my work revolves around the offensive side of cybersecurity.
+
+These days, I’m building my own startup, Cybity, while doing deep security research and bug bounty hunting. Maybe one day you’ll see my name alongside the giants in this field until then, I’ll keep grinding.
+
+Outside of cybersecurity, I train in MMA and spend a lot of time working on self-improvement. I also tend to change my usernames and profile pictures a lot, so if you still see Luffy from One Piece somewhere, that probably means I finally settled on it for a while. My current hacker username is ntrunr which means NetRunner.
+
+This page documents my projects, research, bug bounty findings, experiments, and other random things I build along the way.
+    </p>
+
+  </div>
+
+  <div class="image">
+
+    <img src="https://pbs.twimg.com/profile_images/2055588531003949056/ccXct-Dp_400x400.jpg">
+
+  </div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section class="section" id="projects">
+
+  <div class="section-title">
+    Projects
+  </div>
+
+    <div class="item">
+    <a href="https://github.com/ntrunr/netrunc2">NetRun C2</a>
+    <span>May 2026</span>
+  </div>
+
+    <div class="item">
+    <a href="https://github.com/ntrunr/WebSecurityAcademy">WebSecurityAcademy(STUDY)</a>
+    <span>Apr 2026</span>
+  </div>
+
+    <div class="item">
+    <a href="https://github.com/ntrunr/HavenFetch">HavenFetch</a>
+    <span>Jan 2026</span>
+  </div>
+
+    <div class="item">
+    <a href="https://github.com/ntrunr/DorkRunner">DorkRunner</a>
+    <span>Dec 2025</span>
+  </div>
+
+    <div class="item">
+    <a href="https://github.com/ntrunr/BugRecon">BugRecon</a>
+    <span>Jun 2025</span>
+  </div>
+
+    <div class="item">
+    <a href="https://github.com/ntrunr/CVE">CVEs</a>
+    <span>Mar 2025</span>
+  </div>
+
+  <div class="item">
+    <a href="https://github.com/ntrunr/emailHunter">emailHunter</a>
+    <span>May 2024</span>
+  </div>
+
+  <div class="item">
+    <a href="https://github.com/ntrunr/Compiler">Compiler</a>
+    <span>Oct 2023</span>
+  </div>
+
+  <div class="item">
+    <a href="https://github.com/ntrunr/Webcamjack">Webcamjack</a>
+    <span>Apr 2023</span>
+  </div>
+
+  <div class="item">
+    <a href="https://github.com/ntrunr/WifiKeyFinder">WifiKey Finder</a>
+    <span>2020</span>
+  </div>
+
+</section>
+
+
+<!-- RESEARCH -->
+
+<section class="section" id="research">
+
+  <div class="section-title">
+    Research
+  </div>
+
+  <div class="item">
+    <a href="https://ntrunr.github.io/posts/Initial-Access/">RT0x01 Red Teaming Initial Access</a>
+    <span>Red Teaming | 2026 </span>
+  </div>
+
+  <div class="item">
+    <a href="https://ntrunr.github.io/posts/APT29/">APT29</a>
+    <span>APTs | 2024 </span>
+  </div>
+
+</section>
+
+
+<!-- BLOGS -->
+
+<section class="section" id="blogs">
+
+  <div class="section-title">
+    Blogs
+  </div>
+
+  <div class="item">
+    <a href="https://ntrunr.github.io/posts/Broken-2FA/">Easiest 2FA Bypass</a>
+    <span>2026</span>
+  </div>
+
+  <div class="item">
+    <a href="https://ntrunr.github.io/posts/Week9-Rice-it-Fuck-up/">Rice it Fuck up</a>
+    <span>2025</span>
+  </div>
+
+  <div class="item">
+    <a href="https://ntrunr.github.io/posts/Understanding-Active-Directory/">Understanding Active Directory and Duplicates</a>
+    <span>2025</span>
+  </div>
+
+  <div class="item">
+    <a href="https://ntrunr.github.io/posts/API-Testing/">API Testing and The Last Month</a>
+    <span>2025</span>
+  </div>
+
+</section>
+
+
+<!-- COMPANIES -->
+
+<section class="section">
+
+  <div class="section-title">
+    Companies I Hacked
+  </div>
+
+  <div class="companies">
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Pinterest.svg">
+    <img src="https://www.ibm.com/brand/experience-guides/developer/b1db1ae501d522a1a4b49613fe07c9f1/01_8-bar-positive.svg">
+    <img src="https://logos.bugcrowdusercontent.com/logos/85e6/3f88/041fa6d4/6ee5239552ab10b10c5406f689f53a36_tripadvisor_.jpeg">
+    <img src="https://www.bugcrowd.com/wp-content/uploads/2025/06/Nasa_2.svg">
+    <img src="https://cdn.iconscout.com/icon/free/png-512/free-redbull-icon-svg-download-png-282301.png?f=webp&w=256">
+    <img src="https://profile-photos.hackerone-user-content.com/variants/CJ1ij2wAHKKv9gLCxarUyzfY/3f1ab5c6a9b6dadada1e6c8121700b884388bd0a43471fee1897a38ce57d0b2c">
+    <img src="https://profile-photos.hackerone-user-content.com/variants/000/016/427/554594bb2f3fe33ee0f4971daf33bca27d1421d9_original./0663d355257e21c15e0d8ff931a7394e06e22f8f8feccbc10b4fc9b8252c987c">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg">
+    <img src="https://profile-photos.hackerone-user-content.com/variants/u258rsub76htn189l6jc17ycwrc4/d9695107bfcd68eeb1c9e0912b109cdae9a6c00c0bda6fd4cbd6d9bdb828840a">
+    <img src="https://profile-photos.hackerone-user-content.com/variants/tao21iknynuvwc1ocmkwb9u4o6ck/3f1ab5c6a9b6dadada1e6c8121700b884388bd0a43471fee1897a38ce57d0b2c">
+    <img src="https://profile-photos.hackerone-user-content.com/variants/c0lqsswckbq1fhw2kmar3ske9cr0/3f1ab5c6a9b6dadada1e6c8121700b884388bd0a43471fee1897a38ce57d0b2c">
+    <img src="https://profile-photos.hackerone-user-content.com/variants/000/014/743/77362cc5db2a02b832db9fab8cef3c3e71a2fa00_original./3f1ab5c6a9b6dadada1e6c8121700b884388bd0a43471fee1897a38ce57d0b2c">
+    <img src="https://di-uploads-pod15.dealerinspire.com/lakeforestsportscars/uploads/2021/06/Ferrari-Logo.png">
+    <img src="https://cdn.brandfetch.io/idNvkgyvK9/w/300/h/300/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1668516021409">
+    <img src="https://cdn.brandfetch.io/idUnVg8Dcf/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1770612790415">
+  </div>
+
+</section>
+
+
+<!-- CONNECT -->
+
+<section class="section" id="connect">
+
+  <div class="section-title">
+    Connect
+  </div>
+
+  <div class="connect">
+
+    <a href="https://github.com/ntrunr">GitHub</a>
+    <a href="https://x.com/n7runr">Twitter/X</a>
+    <a href="https://www.youtube.com/@ntrunr">YouTube</a>
+    <a href="https://hackerone.com/h1">HackerOne</a>
+
+  </div>
+
+</section>
+
+
+<footer>
+
+  Buy Me a pizza lol
+
+</footer>
+
+</div>
+
+</body>
+</html>
