@@ -4,474 +4,581 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ntrunr</title>
+<title>ntrunr | red teamer</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+:root {
+    --bg: #050505;
+    --card: #090909;
+    --line: #1a1a1a;
+    --text: #e5e5e5;
+    --muted: #707070;
+    --accent: #7cff41;
+    --accent-glow: rgba(124, 255, 65, 0.15);
 }
 
-body{
-  background:#050505;
-  color:#ededed;
-  font-family:'Inter',sans-serif;
-  padding:60px 8%;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.container{
-  max-width:920px;
-  margin:auto;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
 }
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--line);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--muted);
+}
+
+/* Custom Selection */
+::selection {
+    background: var(--accent);
+    color: var(--bg);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'JetBrains Mono', monospace;
+    background: 
+    linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px),
+    var(--bg);
+    background-size: 40px 40px;
+    color: var(--text);
+    padding: 60px 8%;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-1 { animation: fadeUp 0.6s ease forwards 0.1s; opacity: 0; }
+.animate-2 { animation: fadeUp 0.6s ease forwards 0.3s; opacity: 0; }
+.animate-3 { animation: fadeUp 0.6s ease forwards 0.5s; opacity: 0; }
+.animate-4 { animation: fadeUp 0.6s ease forwards 0.7s; opacity: 0; }
 
 /* NAV */
-
-nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:120px;
-  flex-wrap:wrap;
-  gap:20px;
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 100px;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.logo{
-  font-size:13px;
-  letter-spacing:2px;
-  color:#777;
+.logo {
+    color: var(--accent);
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--accent-glow);
 }
 
-.nav-links{
-  display:flex;
-  gap:22px;
-  flex-wrap:wrap;
+.nav-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-.nav-links a{
-  text-decoration:none;
-  color:#666;
-  font-size:14px;
-  transition:.2s;
+.nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    transition: 0.3s ease;
+    font-size: 13px;
+    display: inline-block;
 }
 
-.nav-links a:hover{
-  color:#fff;
+.nav-links a::before { content: "["; opacity: 0.5; transition: 0.3s; }
+.nav-links a::after { content: "]"; opacity: 0.5; transition: 0.3s; }
+
+.nav-links a:hover {
+    color: var(--accent);
+    text-shadow: 0 0 8px var(--accent-glow);
+}
+
+.nav-links a:hover::before, .nav-links a:hover::after {
+    opacity: 1;
+    color: var(--accent);
 }
 
 /* HERO */
-
-.hero{
-  display:flex;
-  justify-content:space-between;
-  gap:80px;
-  align-items:flex-start;
-  margin-bottom:120px;
-  flex-wrap:wrap;
+.hero {
+    margin-bottom: 80px;
 }
 
-.hero-left{
-  flex:1;
-  min-width:300px;
+.hero h1 {
+    font-size: 120px;
+    line-height: .85;
+    letter-spacing: -8px;
+    margin-bottom: 25px;
 }
 
-.hero-left h1{
-  font-size:88px;
-  line-height:0.9;
-  letter-spacing:-5px;
-  margin-bottom:28px;
-  font-weight:700;
+.hero h1 span {
+    color: var(--accent);
+    text-shadow: 0 0 20px var(--accent-glow);
 }
 
-.accent{
-  color:#db1212;
+.subtitle {
+    color: #888;
+    font-size: 16px;
+    margin-bottom: 50px;
+    letter-spacing: 1px;
 }
 
-.hero-left p{
-  max-width:520px;
-  color:#8a8a8a;
-  line-height:1.9;
-  font-size:15px;
+/* TERMINAL UPGRADE */
+.terminal-wrapper {
+    max-width: 760px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px var(--accent-glow);
+    border: 1px solid var(--line);
+    background: var(--card);
+    overflow: hidden;
 }
 
-.image{
-  width:210px;
-  height:260px;
-  overflow:hidden;
-  border-radius:20px;
-  border:1px solid #141414;
+.terminal-header {
+    background: #111;
+    padding: 10px 15px;
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid var(--line);
 }
 
-.image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+.terminal {
+    padding: 28px;
+    color: #9eff7a;
+    line-height: 2;
+    font-size: 14px;
+    max-height: 350px;
+    overflow-y: auto;
+    cursor: text;
+}
+
+.terminal-output {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+}
+
+.terminal-input-line input {
+    background: transparent;
+    border: none;
+    color: #9eff7a;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    outline: none;
+    flex-grow: 1;
+    caret-color: var(--accent);
+    margin-left: 8px;
+}
+
+.terminal .prompt {
+    color: #fff;
+}
+
+.terminal .dim {
+    color: #7a7a7a;
+}
+
+.status {
+    margin-top: 35px;
+    border-left: 2px solid var(--accent);
+    padding-left: 20px;
+    color: #8d8d8d;
+    line-height: 2;
+    max-width: 760px;
 }
 
 /* SECTION */
-
-.section{
-  margin-bottom:100px;
+.section {
+    margin-top: 90px;
 }
 
-.section-title{
-  font-size:12px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  color:#555;
-  margin-bottom:30px;
+.section-title {
+    color: var(--accent);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+    font-weight: 700;
 }
 
 /* ITEMS */
-
-.item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:18px 0;
-  border-bottom:1px solid #101010;
-  transition:.2s;
-  flex-wrap:wrap;
-  gap:10px;
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+    transition: 0.3s ease;
+    gap: 10px;
 }
 
-.item:hover{
-  padding-left:6px;
+.item:hover {
+    padding-left: 15px;
+    background: linear-gradient(90deg, rgba(124, 255, 65, 0.05) 0%, transparent 100%);
+    border-bottom-color: var(--accent);
 }
 
-.item a{
-  text-decoration:none;
-  color:#f1f1f1;
-  font-size:16px;
+.item a {
+    text-decoration: none;
+    color: var(--text);
+    transition: 0.3s ease;
 }
 
-.item span{
-  color:#666;
-  font-size:13px;
+.item:hover a {
+    color: var(--accent);
+}
+
+.item span {
+    color: #666;
+    font-size: 13px;
+    transition: 0.3s ease;
+}
+
+.item:hover span {
+    color: var(--accent);
 }
 
 /* COMPANIES */
-
-.companies{
-  display:flex;
-  gap:20px;
-  flex-wrap:wrap;
-  align-items:center;
+.companies {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
-.companies img{
-  width:42px;
-  height:42px;
-  object-fit:contain;
-  opacity:.65;
-  filter:grayscale(100%);
-  transition:.2s;
+.companies img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    opacity: 0.4;
+    filter: grayscale(100%);
+    transition: 0.4s ease;
+    transform: translateY(0);
 }
 
-.companies img:hover{
-  opacity:1;
-  filter:grayscale(0%);
+.companies img:hover {
+    opacity: 1;
+    filter: none;
+    transform: translateY(-5px);
 }
 
 /* CONNECT */
-
-.connect{
-  display:flex;
-  gap:18px;
-  flex-wrap:wrap;
+.connect {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
 }
 
-.connect a{
-  text-decoration:none;
-  color:#777;
-  font-size:14px;
-  transition:.2s;
+.connect a {
+    text-decoration: none;
+    color: #888;
+    transition: 0.3s ease;
+    border: 1px solid var(--line);
+    padding: 8px 16px;
+    border-radius: 6px;
 }
 
-.connect a:hover{
-  color:#fff;
+.connect a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(124, 255, 65, 0.05);
+    transform: translateY(-2px);
 }
 
 /* FOOTER */
-
-footer{
-  margin-top:100px;
-  padding-top:25px;
-  border-top:1px solid #111;
-  color:#444;
-  font-size:13px;
+footer {
+    margin-top: 120px;
+    padding-top: 25px;
+    border-top: 1px solid var(--line);
+    color: #555;
+    font-size: 13px;
 }
 
 /* MOBILE */
-
-@media(max-width:800px){
-
-  body{
-    padding:35px 6%;
-  }
-
-  nav{
-    margin-bottom:70px;
-  }
-
-  .hero{
-    gap:45px;
-    margin-bottom:80px;
-  }
-
-  .hero-left h1{
-    font-size:54px;
-    letter-spacing:-3px;
-  }
-
-  .image{
-    width:100%;
-    height:330px;
-  }
-
-  .item{
-    flex-direction:column;
-    align-items:flex-start;
-  }
-
+@media(max-width: 768px) {
+    body { padding: 30px 6%; }
+    .hero h1 {
+        font-size: 72px;
+        letter-spacing: -4px;
+    }
+    .item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .item:hover {
+        padding-left: 10px;
+    }
 }
-
 </style>
 </head>
-
 <body>
 
 <div class="container">
 
-<!-- NAVBAR -->
-
-<nav>
-
-  <div class="logo">
-    who is Frey(ntrunr)?
-  </div>
-
-  <div class="nav-links">
-
-    <a href="#projects">projects</a>
-    <a href="#research">research</a>
-    <a href="#blogs">blogs</a>
-    <a href="#connect">connect</a>
-
-  </div>
-
+<nav class="animate-1">
+    <div class="logo">
+        $ ./ntrunr.sh
+    </div>
+    <div class="nav-links">
+        <a href="#arsenal">arsenal</a>
+        <a href="#research">research</a>
+        <a href="#blogs">blogs</a>
+        <a href="#connect">connect</a>
+    </div>
 </nav>
 
-
-<!-- HERO -->
-
-<section class="hero">
-
-  <div class="hero-left">
-
+<section class="hero animate-2">
     <h1>
-
-      <span class="accent">offensive</span><br>
-      security<br>
-      researcher
-
+        <span>ntrunr</span>
     </h1>
 
-    <p>
+    <div class="subtitle">
+        red teamer / bug hunter / builder
+    </div>
 
-Hello there, I’m Frey. I work as a Red Teamer focused on web security, exploit development, authentication flaws, AI security research, and offensive tooling. As you can probably guess, most of my work revolves around the offensive side of cybersecurity.
+    <div class="terminal-wrapper">
+        <div class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+        </div>
+        <div class="terminal" id="terminal-window">
+            <div class="terminal-output" id="terminal-output">
+                </div>
+            <div class="terminal-input-line">
+                <span class="prompt">$</span>
+                <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" autofocus>
+            </div>
+        </div>
+    </div>
 
-These days, I’m building my own startup, Cybity, while doing deep security research and bug bounty hunting. Maybe one day you’ll see my name alongside the giants in this field until then, I’ll keep grinding.
-
-Outside of cybersecurity, I train in MMA and spend a lot of time working on self-improvement. I also tend to change my usernames and profile pictures a lot, so if you still see Luffy from One Piece somewhere, that probably means I finally settled on it for a while. My current hacker username is ntrunr which means NetRunner.
-
-This page documents my projects, research, bug bounty findings, experiments, and other random things I build along the way.
-    </p>
-
-  </div>
-
-  <div class="image">
-
-    <img src="https://pbs.twimg.com/profile_images/2055588531003949056/ccXct-Dp_400x400.jpg">
-
-  </div>
-
+    <div class="status">
+        Building → Cybity<br>
+        Focus → Offensive Security & AI Security<br>
+        Learning → CRTO / Advanced Red Teaming<br>
+        Mission → Become one of the best offensive security researchers
+    </div>
 </section>
 
-
-<!-- PROJECTS -->
-
-<section class="section" id="projects">
-
-  <div class="section-title">
-    Projects
-  </div>
-
+<section class="section animate-3" id="arsenal">
+    <div class="section-title">arsenal</div>
+    
     <div class="item">
-    <a href="https://github.com/ntrunr/netrunc2">NetRun C2</a>
-    <span>May 2026</span>
-  </div>
-
+        <a href="https://github.com/ntrunr/netrunc2" target="_blank">NetRun C2</a>
+        <span>2026</span>
+    </div>
     <div class="item">
-    <a href="https://github.com/ntrunr/WebSecurityAcademy">WebSecurityAcademy(STUDY)</a>
-    <span>Apr 2026</span>
-  </div>
-
+        <a href="https://github.com/ntrunr/WebSecurityAcademy" target="_blank">WebSecurityAcademy</a>
+        <span>2026</span>
+    </div>
     <div class="item">
-    <a href="https://github.com/ntrunr/HavenFetch">HavenFetch</a>
-    <span>Jan 2026</span>
-  </div>
-
+        <a href="https://github.com/ntrunr/HavenFetch" target="_blank">HavenFetch</a>
+        <span>2026</span>
+    </div>
     <div class="item">
-    <a href="https://github.com/ntrunr/DorkRunner">DorkRunner</a>
-    <span>Dec 2025</span>
-  </div>
-
+        <a href="https://github.com/ntrunr/DorkRunner" target="_blank">DorkRunner</a>
+        <span>2025</span>
+    </div>
     <div class="item">
-    <a href="https://github.com/ntrunr/BugRecon">BugRecon</a>
-    <span>Jun 2025</span>
-  </div>
-
+        <a href="https://github.com/ntrunr/BugRecon" target="_blank">BugRecon</a>
+        <span>2025</span>
+    </div>
     <div class="item">
-    <a href="https://github.com/ntrunr/CVE">CVEs</a>
-    <span>Mar 2025</span>
-  </div>
-
-  <div class="item">
-    <a href="https://github.com/ntrunr/emailHunter">emailHunter</a>
-    <span>May 2024</span>
-  </div>
-
-  <div class="item">
-    <a href="https://github.com/ntrunr/Compiler">Compiler</a>
-    <span>Oct 2023</span>
-  </div>
-
-  <div class="item">
-    <a href="https://github.com/ntrunr/Webcamjack">Webcamjack</a>
-    <span>Apr 2023</span>
-  </div>
-
-  <div class="item">
-    <a href="https://github.com/ntrunr/WifiKeyFinder">WifiKey Finder</a>
-    <span>2020</span>
-  </div>
-
+        <a href="https://github.com/ntrunr/CVE" target="_blank">CVEs</a>
+        <span>2025</span>
+    </div>
+    <div class="item">
+        <a href="https://github.com/ntrunr/emailHunter" target="_blank">emailHunter</a>
+        <span>2024</span>
+    </div>
 </section>
 
-
-<!-- RESEARCH -->
-
-<section class="section" id="research">
-
-  <div class="section-title">
-    Research
-  </div>
-
-  <div class="item">
-    <a href="https://ntrunr.github.io/posts/Initial-Access/">RT0x01 Red Teaming Initial Access</a>
-    <span>Red Teaming | 2026 </span>
-  </div>
-
-  <div class="item">
-    <a href="https://ntrunr.github.io/posts/APT29/">APT29</a>
-    <span>APTs | 2024 </span>
-  </div>
-
+<section class="section animate-3" id="research">
+    <div class="section-title">research</div>
+    
+    <div class="item">
+        <a href="https://ntrunr.github.io/posts/Initial-Access/" target="_blank">RT0x01 — Initial Access</a>
+        <span>2026</span>
+    </div>
+    <div class="item">
+        <a href="https://ntrunr.github.io/posts/APT29/" target="_blank">APT29</a>
+        <span>2024</span>
+    </div>
 </section>
 
-
-<!-- BLOGS -->
-
-<section class="section" id="blogs">
-
-  <div class="section-title">
-    Blogs
-  </div>
-
-  <div class="item">
-    <a href="https://ntrunr.github.io/posts/Broken-2FA/">Easiest 2FA Bypass</a>
-    <span>2026</span>
-  </div>
-
-  <div class="item">
-    <a href="https://ntrunr.github.io/posts/Week9-Rice-it-Fuck-up/">Rice it Fuck up</a>
-    <span>2025</span>
-  </div>
-
-  <div class="item">
-    <a href="https://ntrunr.github.io/posts/Understanding-Active-Directory/">Understanding Active Directory and Duplicates</a>
-    <span>2025</span>
-  </div>
-
-  <div class="item">
-    <a href="https://ntrunr.github.io/posts/API-Testing/">API Testing and The Last Month</a>
-    <span>2025</span>
-  </div>
-
+<section class="section animate-4" id="blogs">
+    <div class="section-title">writeups</div>
+    
+    <div class="item">
+        <a href="https://ntrunr.github.io/posts/Broken-2FA/" target="_blank">Easiest 2FA Bypass</a>
+        <span>2026</span>
+    </div>
+    <div class="item">
+        <a href="https://ntrunr.github.io/posts/Week9-Rice-it-Fuck-up/" target="_blank">Rice It Fuck Up</a>
+        <span>2025</span>
+    </div>
+    <div class="item">
+        <a href="https://ntrunr.github.io/posts/Understanding-Active-Directory/" target="_blank">Understanding Active Directory</a>
+        <span>2025</span>
+    </div>
+    <div class="item">
+        <a href="https://ntrunr.github.io/posts/API-Testing/" target="_blank">API Testing</a>
+        <span>2025</span>
+    </div>
 </section>
 
-
-<!-- COMPANIES -->
-
-<section class="section">
-
-  <div class="section-title">
-    Companies I Hacked
-  </div>
-
-  <div class="companies">
-
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Pinterest.svg">
-    <img src="https://www.ibm.com/brand/experience-guides/developer/b1db1ae501d522a1a4b49613fe07c9f1/01_8-bar-positive.svg">
-    <img src="https://logos.bugcrowdusercontent.com/logos/85e6/3f88/041fa6d4/6ee5239552ab10b10c5406f689f53a36_tripadvisor_.jpeg">
-    <img src="https://www.bugcrowd.com/wp-content/uploads/2025/06/Nasa_2.svg">
-    <img src="https://cdn.iconscout.com/icon/free/png-512/free-redbull-icon-svg-download-png-282301.png?f=webp&w=256">
-    <img src="https://profile-photos.hackerone-user-content.com/variants/CJ1ij2wAHKKv9gLCxarUyzfY/3f1ab5c6a9b6dadada1e6c8121700b884388bd0a43471fee1897a38ce57d0b2c">
-    <img src="https://profile-photos.hackerone-user-content.com/variants/000/016/427/554594bb2f3fe33ee0f4971daf33bca27d1421d9_original./0663d355257e21c15e0d8ff931a7394e06e22f8f8feccbc10b4fc9b8252c987c">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg">
-    <img src="https://profile-photos.hackerone-user-content.com/variants/u258rsub76htn189l6jc17ycwrc4/d9695107bfcd68eeb1c9e0912b109cdae9a6c00c0bda6fd4cbd6d9bdb828840a">
-    <img src="https://profile-photos.hackerone-user-content.com/variants/tao21iknynuvwc1ocmkwb9u4o6ck/3f1ab5c6a9b6dadada1e6c8121700b884388bd0a43471fee1897a38ce57d0b2c">
-    <img src="https://profile-photos.hackerone-user-content.com/variants/c0lqsswckbq1fhw2kmar3ske9cr0/3f1ab5c6a9b6dadada1e6c8121700b884388bd0a43471fee1897a38ce57d0b2c">
-    <img src="https://profile-photos.hackerone-user-content.com/variants/000/014/743/77362cc5db2a02b832db9fab8cef3c3e71a2fa00_original./3f1ab5c6a9b6dadada1e6c8121700b884388bd0a43471fee1897a38ce57d0b2c">
-    <img src="https://di-uploads-pod15.dealerinspire.com/lakeforestsportscars/uploads/2021/06/Ferrari-Logo.png">
-    <img src="https://cdn.brandfetch.io/idNvkgyvK9/w/300/h/300/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1668516021409">
-    <img src="https://cdn.brandfetch.io/idUnVg8Dcf/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1770612790415">
-  </div>
-
+<section class="section animate-4">
+    <div class="section-title">recognized by</div>
+    
+    <div class="companies">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Pinterest.svg" alt="Pinterest">
+        <img src="https://www.ibm.com/brand/experience-guides/developer/b1db1ae501d522a1a4b49613fe07c9f1/01_8-bar-positive.svg" alt="IBM">
+        <img src="https://logos.bugcrowdusercontent.com/logos/85e6/3f88/041fa6d4/6ee5239552ab10b10c5406f689f53a36_tripadvisor_.jpeg" alt="Tripadvisor">
+        <img src="https://www.bugcrowd.com/wp-content/uploads/2025/06/Nasa_2.svg" alt="NASA">
+        <img src="https://cdn.iconscout.com/icon/free/png-512/free-redbull-icon-svg-download-png-282301.png?f=webp&w=256" alt="Redbull">
+        <img src="https://profile-photos.hackerone-user-content.com/variants/CJ1ij2wAHKKv9gLCxarUyzfY/3f1ab5c6a9b6dadada1e6c8121700b884388bd0a43471fee1897a38ce57d0b2c" alt="H1 Logo">
+        <img src="https://profile-photos.hackerone-user-content.com/variants/000/016/427/554594bb2f3fe33ee0f4971daf33bca27d1421d9_original./0663d355257e21c15e0d8ff931a7394e06e22f8f8feccbc10b4fc9b8252c987c" alt="H1 Logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS">
+        <img src="https://profile-photos.hackerone-user-content.com/variants/u258rsub76htn189l6jc17ycwrc4/d9695107bfcd68eeb1c9e0912b109cdae9a6c00c0bda6fd4cbd6d9bdb828840a" alt="H1 Logo">
+        <img src="https://profile-photos.hackerone-user-content.com/variants/tao21iknynuvwc1ocmkwb9u4o6ck/3f1ab5c6a9b6dadada1e6c8121700b884388bd0a43471fee1897a38ce57d0b2c" alt="H1 Logo">
+        <img src="https://profile-photos.hackerone-user-content.com/variants/c0lqsswckbq1fhw2kmar3ske9cr0/3f1ab5c6a9b6dadada1e6c8121700b884388bd0a43471fee1897a38ce57d0b2c" alt="H1 Logo">
+        <img src="https://profile-photos.hackerone-user-content.com/variants/000/014/743/77362cc5db2a02b832db9fab8cef3c3e71a2fa00_original./3f1ab5c6a9b6dadada1e6c8121700b884388bd0a43471fee1897a38ce57d0b2c" alt="H1 Logo">
+        <img src="https://di-uploads-pod15.dealerinspire.com/lakeforestsportscars/uploads/2021/06/Ferrari-Logo.png" alt="Ferrari">
+        <img src="https://cdn.brandfetch.io/idNvkgyvK9/w/300/h/300/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1668516021409" alt="Brand Logo">
+        <img src="https://cdn.brandfetch.io/idUnVg8Dcf/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1770612790415" alt="Brand Logo">
+    </div>
 </section>
 
-
-<!-- CONNECT -->
-
-<section class="section" id="connect">
-
-  <div class="section-title">
-    Connect
-  </div>
-
-  <div class="connect">
-
-    <a href="https://github.com/ntrunr">GitHub</a>
-    <a href="https://x.com/n7runr">Twitter/X</a>
-    <a href="https://www.youtube.com/@ntrunr">YouTube</a>
-    <a href="https://hackerone.com/h1">HackerOne</a>
-
-  </div>
-
+<section class="section animate-4" id="connect">
+    <div class="section-title">contact</div>
+    
+    <div class="connect">
+        <a href="https://github.com/ntrunr" target="_blank">github</a>
+        <a href="https://x.com/n7runr" target="_blank">twitter</a>
+        <a href="https://www.youtube.com/@ntrunr" target="_blank">youtube</a>
+        <a href="https://hackerone.com/h1" target="_blank">hackerone</a>
+    </div>
 </section>
 
-
-<footer>
-
-  Buy Me a pizza lol
-
+<footer class="animate-4">
+    <span class="prompt">$</span> exit<br><br>
+    Built with caffeine and bad decisions.
 </footer>
 
 </div>
+
+<script>
+    const termWindow = document.getElementById('terminal-window');
+    const termOutput = document.getElementById('terminal-output');
+    const termInput = document.getElementById('terminal-input');
+
+    // Focus input when clicking anywhere in the terminal
+    termWindow.addEventListener('click', () => {
+        termInput.focus();
+    });
+
+    // Database of commands
+    const commands = {
+        'help': 'Available commands:<br><span class="dim">→</span> whoami<br><span class="dim">→</span> status<br><span class="dim">→</span> social<br><span class="dim">→</span> clear',
+        'whoami': 'Frey (ntrunr)<br><br>Red Teamer focused on:<br><span class="dim">→</span> Web Security<br><span class="dim">→</span> Authentication & Access Control<br><span class="dim">→</span> AI Security Research<br><span class="dim">→</span> Offensive Tooling<br><span class="dim">→</span> Red Team Operations',
+        'status': 'Building Cybity<br>Hunting bugs<br>Researching offensive security<br>Trying to become world class',
+        'social': '<a href="https://github.com/ntrunr" target="_blank" style="color:var(--accent); text-decoration:none;">[github]</a> <a href="https://x.com/n7runr" target="_blank" style="color:var(--accent); text-decoration:none;">[twitter]</a>',
+        'sudo': 'Access denied. This incident will be reported.'
+    };
+
+    // Auto-run whoami on load so the terminal isn't empty
+    window.onload = () => {
+        setTimeout(() => {
+            appendLog('whoami', commands['whoami']);
+        }, 500); // Slight delay for the fade-in animation
+    };
+
+    // Listen for Enter key
+    termInput.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            const cmd = this.value.trim().toLowerCase();
+            this.value = ''; // Clear input
+
+            if (cmd === 'clear') {
+                termOutput.innerHTML = '';
+                return;
+            }
+
+            if (cmd === '') {
+                appendLog('', ''); // Just print empty prompt
+                return;
+            }
+
+            let response = commands[cmd];
+            if (!response) {
+                response = `ntrunr: command not found: ${cmd}. Type 'help' for available commands.`;
+            }
+
+            appendLog(cmd, response);
+        }
+    });
+
+    // Function to print to terminal
+    function appendLog(cmd, response) {
+        const logEntry = document.createElement('div');
+        let html = `<span class="prompt">$</span> ${cmd}`;
+        if (response) {
+            html += `<br><br>${response}`;
+        }
+        logEntry.innerHTML = html;
+        termOutput.appendChild(logEntry);
+        
+        // Auto scroll to bottom
+        termWindow.scrollTop = termWindow.scrollHeight;
+    }
+</script>
 
 </body>
 </html>
